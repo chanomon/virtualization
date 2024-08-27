@@ -8,7 +8,10 @@ These hypervisors run directly on the host's hardware to control the hardware an
 ### Type-2 or hosted hypervisors
 These hypervisors run on a conventional operating system (OS) just as other computer programs do. A virtual machine monitor runs as a process on the host, such as VirtualBox. Type-2 hypervisors abstract guest operating systems from the host operating system, effectively creating an isolated system that can be interacted with by the host. Examples of Type-2 hypervisor include VirtualBox and VMware Workstation.
 The distinction between these two types is not always clear. For instance, KVM and bhyve are kernel modules[6] that effectively convert the host operating system to a type-1 hypervisor.[7]
+## Kernel Virtual Machine
+Kernel-based Virtual Machines (KVM) are an open-source virtualization technology built into Linux®. With them, you can transform Linux into a hypervisor that allows a host machine to run multiple isolated virtual environments called virtual machines (VMs) or guests.
 
+KVMs are part of Linux. Therefore, if you have a version of Linux 2.6.20 or later, you already have them available. They were first announced in 2006, and a year later they were incorporated into the mainline Linux kernel. Since they are part of the current Linux code, they immediately receive all the improvements, fixes, and new features of the system without requiring any additional engineering.
 ## References:
 
 1 Goldberg, Robert P. (1973). Architectural Principles for Virtual Computer Systems (PDF) (Technical report). Harvard University. ESD-TR-73-105.
