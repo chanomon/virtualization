@@ -1,2 +1,15 @@
 # virtualization
 virtualization of SO
+In his 1973 thesis, "Architectural Principles for Virtual Computer Systems," Robert P. Goldberg classified two types of hypervisor:[1]
+### Type-1, native or bare-metal hypervisors
+These hypervisors run directly on the host's hardware to control the hardware and to manage guest operating systems. For this reason, they are sometimes called bare-metal hypervisors. The first hypervisors, which IBM developed in the 1960s, were native hypervisors.[5] These included the test software SIMMON and the CP/CMS operating system, the predecessor of IBM's VM family of virtual machine operating systems. Examples of Type-1 hypervisor include Hyper-V, Xen and VMware ESXi.
+![image](https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyperviseur.svg)
+
+### Type-2 or hosted hypervisors
+These hypervisors run on a conventional operating system (OS) just as other computer programs do. A virtual machine monitor runs as a process on the host, such as VirtualBox. Type-2 hypervisors abstract guest operating systems from the host operating system, effectively creating an isolated system that can be interacted with by the host. Examples of Type-2 hypervisor include VirtualBox and VMware Workstation.
+The distinction between these two types is not always clear. For instance, KVM and bhyve are kernel modules[6] that effectively convert the host operating system to a type-1 hypervisor.[7]
+
+## References:
+
+1 Goldberg, Robert P. (1973). Architectural Principles for Virtual Computer Systems (PDF) (Technical report). Harvard University. ESD-TR-73-105.
+7 Graziano, Charles (2011). A performance analysis of Xen and KVM hypervisors for hosting the Xen Worlds Project (MS thesis). Iowa State University. doi:10.31274/etd-180810-2322. hdl:20.500.12876/26405. Retrieved October 16, 2022.
