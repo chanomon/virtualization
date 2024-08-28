@@ -12,6 +12,45 @@ The distinction between these two types is not always clear. For instance, KVM a
 Kernel-based Virtual Machines (KVM) are an open-source virtualization technology built into Linux®. With them, you can transform Linux into a hypervisor that allows a host machine to run multiple isolated virtual environments called virtual machines (VMs) or guests.
 
 KVMs are part of Linux. Therefore, if you have a version of Linux 2.6.20 or later, you already have them available. They were first announced in 2006, and a year later they were incorporated into the mainline Linux kernel. Since they are part of the current Linux code, they immediately receive all the improvements, fixes, and new features of the system without requiring any additional engineering.
+KVM requires a CPU with virtualization extensions:
+- Intel® Virtualization Technology (Intel® VT)
+    - CPU flag is vmx (Virtual Machine Extensions).
+- AMD virtualization (AMD-V)
+    - CPU flag is svm (Secure Virtual Machine).
+```console
+egrep --count '^flags.*(vmx|svm)' /proc/cpuinfo
+```
+If output is 0, your system does not support the relevant virtualization extensions or disabled on BIOS. You can still use QEMU/KVM, but the emulator will fall back to software virtualization, which is much slower.
+### Installing Virtualization Packages (Ubuntu)
+```console
+ apt-get install \
+    bridge-utils \
+    qemu-kvm \
+    virt-manager
+```
+### Installing  a virtual os
+# virt-install \ 
+```console
+  --name nameofvirtualmachine \ 
+  --memory 2048 \ # The amount of memory (RAM) to allocate to the guest, in MiB. 
+  --vcpus 2 \ #Number if virtual CPUs
+  --disk size=8 \ # In Gb
+  --cdrom /path/to/OS.iso \ 
+  --os-variant rhel7 
+```
+### Start virtual machine (domain)
+```console
+virsh console
+```
+### Gracefully shutdown a domain
+```console
+virsh shutdown
+```
+### help
+```console
+virsh --help
+```
+
 ## References:
 
 1 Goldberg, Robert P. (1973). Architectural Principles for Virtual Computer Systems (PDF) (Technical report). Harvard University. ESD-TR-73-105.
