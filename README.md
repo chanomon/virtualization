@@ -51,6 +51,9 @@ virsh shutdown
 virsh --help
 ```
 
+### Use next link for usefull commands
+[sorry but I got tired of putting all of these usefull commands](https://www.basezap.com/20-virsh-commands-for-managing-vms/#:~:text=Virsh%20is%20a%20powerful%20command,KVM%2C%20Xen%2C%20and%20more.)
+
 ## References:
 
 1 Goldberg, Robert P. (1973). Architectural Principles for Virtual Computer Systems (PDF) (Technical report). Harvard University. ESD-TR-73-105.
