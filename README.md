@@ -38,6 +38,19 @@ If output is 0, your system does not support the relevant virtualization extensi
   --cdrom /path/to/OS.iso \ 
   --os-variant rhel7 
 ```
+### This config worked for me to then display system with ```virt-viewer VMname ``` command
+```
+sudo virt-install \
+  --name tonalli \
+  --os-variant ubuntu14.04 \
+  --vcpus 3 \
+  --ram 2048 \
+  --disk path=/var/lib/libvirt/images/tonalli.qcow2,size=30,format=qcow2 \
+  --cdrom /home/elizandro/MEGA/MEGAsync/code/kvm/ubuntu-14.04.6-server-amd64.iso \
+  --network bridge=virbr0,model=virtio \
+  --graphics vnc,listen=127.0.0.1,port=5902\
+  --noreboot
+```
 ### If after installing a VM you cannot see the console after ```virsh console VM```.....
 
 
