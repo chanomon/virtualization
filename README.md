@@ -38,6 +38,14 @@ If output is 0, your system does not support the relevant virtualization extensi
   --cdrom /path/to/OS.iso \ 
   --os-variant rhel7 
 ```
+### If after installing a VM you cannot see the console after ```virsh console VM```.....
+
+
+```virsh console``` opens a connection to the guest's primary serial port. This will only show any output / accept input, if there is something in the guest OS attached to the other end of the serial port (ie a getty process). IOW, it hasn't hung, there just isn't anything in your guest using the serial port to respond to.
+
+OS using systemd would normally automatically spawn a getty process, if there is no graphical console available (ie no VGA device). If you do have a graphical console configured, then try connecting to that instead. Typically you'd use VNC/SPICE clients to connect to a graphical console, such as ```virt-viewer vm1```
+
+
 ### Start virtual machine (domain)
 ```console
 virsh console
