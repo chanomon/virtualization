@@ -134,4 +134,5 @@ virsh --help
 ## References:
 
 1 Goldberg, Robert P. (1973). Architectural Principles for Virtual Computer Systems (PDF) (Technical report). Harvard University. ESD-TR-73-105.
+2 https://sheeeng.github.io/getting-started-with-kernel-based-virtual-machine-presentation
 7 Graziano, Charles (2011). A performance analysis of Xen and KVM hypervisors for hosting the Xen Worlds Project (MS thesis). Iowa State University. doi:10.31274/etd-180810-2322. hdl:20.500.12876/26405. Retrieved October 16, 2022.
