@@ -28,6 +28,38 @@ If output is 0, your system does not support the relevant virtualization extensi
     qemu-kvm \
     virt-manager
 ```
+### Enable libvirtd Service
+The libvirtd service is a server side daemon and driver required to manage the virtualization capabilities of the KVM hypervisor.
+Start libvirtd service and enable it on boot.
+```systemctl start libvirtd```
+
+```systemctl enable libvirtd```
+### Verify KVM Kernel Modules
+Verify that the KVM kernel modules are properly loaded.
+```lsmod | egrep 'kvm_*(amd|intel)'```
+If output contains kvm_intel or kvm_amd, KVM is properly configured.
+### Append Groups to Manage KVM
+Append current user to kvm and libvirt groups to create and manage virtual machines.
+```usermod --append --groups=kvm,libvirt ${USER}```
+
+```cat /etc/group | egrep "^(kvm|libvirt).*${USER}"```
+Log out and log in again to apply this modification.
+### Update QEMU Configuration
+```console 
+# cp /etc/libvirt/qemu.conf /etc/libvirt/qemu.conf.original
+# sed --in-place \
+    "s,\#user = \"root\",\#user = \"${USER}\",g" \
+    /etc/libvirt/qemu.conf
+# sed --in-place \
+    "s,\#group = \"root\",\#group = \"libvirt\",g" \
+    /etc/libvirt/qemu.conf
+# diff --unified \
+    /etc/libvirt/qemu.conf.original \
+    /etc/libvirt/qemu.conf
+systemctl restart libvirtd
+```
+
+
 ### Installing  a virtual os
 # virt-install \ 
 ```console
