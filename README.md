@@ -76,6 +76,12 @@ Start it this way:
 $ sudo start ttyS0
 ```
 After that you should be able to connect to the serial console from the host. Don't forget to press Enter once connected.
+### Virtualization and set up for tonalli
+For virtualization of tonalli system, execute ```sudo ./virt-install-2.sh``` make sure you and file have necesary permissions.
+make necesary changes if you need
+
+Then enter in to the virtual machine and execute "sudo ./setup.sh". Remember the virtual machin instalation, this script should be loaded in  ```source=/path/inside/host``` so you'll locate the file in ```target=/path/inside/guest``` inside the VM.
+
 
 ### Start virtual machine (domain)
 ```console
