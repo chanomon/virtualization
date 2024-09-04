@@ -90,7 +90,7 @@ sudo virt-install \
 
 OS using systemd would normally automatically spawn a getty process, if there is no graphical console available (ie no VGA device). If you do have a graphical console configured, then try connecting to that instead. Typically you'd use VNC/SPICE clients to connect to a graphical console, such as ```virt-viewer vm1```
 ### To configure serial port for future ```virsh console``` connections:
- you should add an Upstart task as /etc/init/ttyS0.conf, containing the following:
+ you should add an Upstart task as ```/etc/init/ttyS0.conf```, containing the following:
 ```
 # ttyS0 - getty
 #
