@@ -62,8 +62,8 @@ systemctl restart libvirtd
 
 
 ### Installing  a virtual os
-# virt-install \ 
 ```console
+virt-install \ 
   --name nameofvirtualmachine \ 
   --memory 2048 \ # The amount of memory (RAM) to allocate to the guest, in MiB. 
   --vcpus 2 \ #Number if virtual CPUs
