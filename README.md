@@ -17,6 +17,7 @@ KVM requires a CPU with virtualization extensions:
     - CPU flag is vmx (Virtual Machine Extensions).
 - AMD virtualization (AMD-V)
     - CPU flag is svm (Secure Virtual Machine).
+Type in your terminal:
 ```console
 egrep --count '^flags.*(vmx|svm)' /proc/cpuinfo
 ```
