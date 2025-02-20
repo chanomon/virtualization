@@ -62,24 +62,17 @@ systemctl restart libvirtd
 
 
 ### Installing  a virtual os
-```console
-virt-install \ 
-  --name nameofvirtualmachine \ 
-  --memory 2048 \ # The amount of memory (RAM) to allocate to the guest, in MiB. 
-  --vcpus 2 \ #Number if virtual CPUs
-  --disk size=8 \ # In Gb
-  --cdrom /path/to/OS.iso \ 
-  --os-variant rhel7 
+
+## This config worked for me to then display system with ```virt-viewer VMname ``` command
 ```
-### This config worked for me to then display system with ```virt-viewer VMname ``` command
-```
+# Replace al the <fields>, make sure you don't leave any arrow <>
 sudo virt-install \
-  --name tonalli \
-  --os-variant ubuntu14.04 \
-  --vcpus 3 \
-  --ram 2048 \
-  --disk path=/var/lib/libvirt/images/tonalli.qcow2,size=30,format=qcow2 \
-  --cdrom /home/elizandro/MEGA/MEGAsync/code/kvm/ubuntu-14.04.6-server-amd64.iso \
+  --name <name for the virtual machine> \
+  --os-variant <for example ubuntu14.04> \
+  --vcpus <numberofcpus> \
+  --ram <in Mb, remember, 1Gb = 1024 Mb> \
+  --disk path=/var/lib/libvirt/images/nameoftheVM.qcow2,size=30,format=qcow2 \ ## size is the number of Gb you want to give of space to your VM 
+  --cdrom /path/to/your/osImage.iso \
   --network bridge=virbr0,model=virtio \
   --graphics vnc,listen=127.0.0.1,port=5902\
   --noreboot
@@ -118,7 +111,7 @@ Then enter in to the virtual machine and execute "sudo ./setup.sh". Remember the
 
 ### Start virtual machine (domain)
 ```console
-virsh console
+virsh console <domain>
 ```
 ### Gracefully shutdown a domain
 ```console
