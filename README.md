@@ -125,8 +125,100 @@ virsh --help
 ### Use next link for usefull commands
 [sorry but I got tired of putting all of these usefull commands](https://www.basezap.com/20-virsh-commands-for-managing-vms/#:~:text=Virsh%20is%20a%20powerful%20command,KVM%2C%20Xen%2C%20and%20more.)
 
+# Enabling File Sharing in a Virtual Machine
+
+## 1. Edit the Virtual Machine Configuration
+
+On the **host**, edit the VM configuration:
+
+```bash
+virsh edit your-vm-name
+```
+
+Find the `<devices>` section and add the following:
+
+```xml
+<filesystem type='mount' accessmode='passthrough'>
+    <driver type='path'/>
+    <source dir='/path/on/host'/>
+    <target dir='shared'/> #this is the name of the target, not a path
+</filesystem>
+```
+
+Save and exit the editor.
+
+## 2. Restart the Virtual Machine
+
+```bash
+virsh shutdown your-vm-name
+virsh start your-vm-name
+```
+
+## 3. Install Required Packages on the VM
+
+Inside the **virtual machine (VM)**, install the necessary packages:
+
+```bash
+sudo apt-get update
+sudo apt-get install virtiofs-utils
+```
+
+If the package is unavailable, try:
+
+```bash
+sudo apt-get install nfs-common
+```
+
+## 4. Mount the Shared Directory
+
+Inside the **VM**, run the following command:
+
+```bash
+sudo mount -t 9p -o trans=virtio shared /home/your-user/shared-folder  #remember the name of your target (shared) in the xml you edited on the host
+```
+
+Check if the files from the **host** are accessible:
+
+```bash
+ls /home/your-user/shared-folder
+```
+
+If you see the files from the host, the shared folder is successfully mounted! 🚀
+
+## 5. Automate Mounting on Startup
+
+To mount the shared directory automatically on VM startup, add the following line to `/etc/fstab`:
+
+```
+shared /home/your-user/shared-folder 9p trans=virtio,version=9p2000.L,rw 0 0
+```
+
+
+
+## Troubleshooting
+
+If you encounter errors, ensure:
+
+1. The `<filesystem>` entry exists in `virsh edit your-vm-name`.
+2. The VM was restarted after configuration changes.
+3. The `9p` kernel module is loaded:
+
+   ```bash
+   lsmod | grep 9p
+   ```
+
+4. The host directory exists (`/path/on/host`).
+5. The VM user has permission to access `/home/your-user/shared-folder`.
+
+---
+
+This guide helps you enable file sharing in a VM running Ubuntu 14.04 using `9pfs`. If you need further assistance, feel free to ask. 🚀
+
+
+
 ## References:
 
 1 Goldberg, Robert P. (1973). Architectural Principles for Virtual Computer Systems (PDF) (Technical report). Harvard University. ESD-TR-73-105.
 2 https://sheeeng.github.io/getting-started-with-kernel-based-virtual-machine-presentation
-7 Graziano, Charles (2011). A performance analysis of Xen and KVM hypervisors for hosting the Xen Worlds Project (MS thesis). Iowa State University. doi:10.31274/etd-180810-2322. hdl:20.500.12876/26405. Retrieved October 16, 2022.
+3 Graziano, Charles (2011). A performance analysis of Xen and KVM hypervisors for hosting the Xen Worlds Project (MS thesis). Iowa State University. doi:10.31274/etd-180810-2322. hdl:20.500.12876/26405. Retrieved October 16, 2022.
+4 https://qemu.readthedocs.io/en/latest/system/devices/virtiofs.html
