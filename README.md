@@ -101,7 +101,17 @@ Start it this way:
 ```
 $ sudo start ttyS0
 ```
-After that you should be able to connect to the serial console from the host. Don't forget to press Enter once connected.
+Maybe you should reboot the vm from the host with:
+
+```
+& virsh reboot nameofVM
+```
+
+After that you should be able to connect to the serial console from the host with:
+```
+virsh console nameofVM
+```
+Don't forget to press Enter once connected.
 ### Virtualization and set up for tonalli
 For virtualization of tonalli system, execute ```sudo ./virt-install-2.sh``` make sure you and file have necesary permissions.
 make necesary changes if you need
