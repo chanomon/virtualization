@@ -78,13 +78,16 @@ sudo virt-install \
   --noreboot
 ```
 ### If after installing a VM you cannot see the console after ```virsh console VM```.....
-
+You probably need to configure the installation on th VM, use ```virt-manager``` command to set up the configuration.
+If you cannot access with ```virsh console nameofVM```, use ```virt-manager```and follow the next section.
 
 ```virsh console``` opens a connection to the guest's primary serial port. This will only show any output / accept input, if there is something in the guest OS attached to the other end of the serial port (ie a getty process). IOW, it hasn't hung, there just isn't anything in your guest using the serial port to respond to.
 
 OS using systemd would normally automatically spawn a getty process, if there is no graphical console available (ie no VGA device). If you do have a graphical console configured, then try connecting to that instead. Typically you'd use VNC/SPICE clients to connect to a graphical console, such as ```virt-viewer vm1```
+
+
 ### To configure serial port for future ```virsh console``` connections:
- you should add an Upstart task as ```/etc/init/ttyS0.conf```, containing the following:
+On the VM, add an Upstart task as ```/etc/init/ttyS0.conf```, containing the following:
 ```
 # ttyS0 - getty
 #
@@ -97,7 +100,7 @@ stop on runlevel [!2345]
 respawn
 exec /sbin/getty -L 115200 ttyS0 vt102
 ```
-Start it this way:
+Start it on the VM this way:
 ```
 $ sudo start ttyS0
 ```
