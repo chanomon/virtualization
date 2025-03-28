@@ -47,14 +47,14 @@ Append current user to kvm and libvirt groups to create and manage virtual machi
 Log out and log in again to apply this modification.
 ### Update QEMU Configuration
 ```console 
-# cp /etc/libvirt/qemu.conf /etc/libvirt/qemu.conf.original
-# sed --in-place \
+cp /etc/libvirt/qemu.conf /etc/libvirt/qemu.conf.original
+sed --in-place \
     "s,\#user = \"root\",\#user = \"${USER}\",g" \
     /etc/libvirt/qemu.conf
-# sed --in-place \
+sed --in-place \
     "s,\#group = \"root\",\#group = \"libvirt\",g" \
     /etc/libvirt/qemu.conf
-# diff --unified \
+diff --unified \
     /etc/libvirt/qemu.conf.original \
     /etc/libvirt/qemu.conf
 systemctl restart libvirtd
