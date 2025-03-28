@@ -29,6 +29,15 @@ If output is 0, your system does not support the relevant virtualization extensi
     qemu-kvm \
     virt-manager
 ```
+### (CentOS)
+```console
+ yum install \
+    libvirt \
+    qemu-kvm \
+    virt-install \
+    virt-install \
+    virt-manager
+``
 ### Enable libvirtd Service
 The libvirtd service is a server side daemon and driver required to manage the virtualization capabilities of the KVM hypervisor.
 Start libvirtd service and enable it on boot.
