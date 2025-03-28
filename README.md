@@ -1,13 +1,13 @@
 # virtualization
 virtualization of SO
-In his 1973 thesis, "Architectural Principles for Virtual Computer Systems," Robert P. Goldberg classified two types of hypervisor:[1]
+In his 1973 thesis, "Architectural Principles for Virtual Computer Systems," Robert P. Goldberg classified two types of hypervisor:
 ### Type-1, native or bare-metal hypervisors
-These hypervisors run directly on the host's hardware to control the hardware and to manage guest operating systems. For this reason, they are sometimes called bare-metal hypervisors. The first hypervisors, which IBM developed in the 1960s, were native hypervisors.[5] These included the test software SIMMON and the CP/CMS operating system, the predecessor of IBM's VM family of virtual machine operating systems. Examples of Type-1 hypervisor include Hyper-V, Xen and VMware ESXi.
+These hypervisors run directly on the host's hardware to control the hardware and to manage guest operating systems. For this reason, they are sometimes called bare-metal hypervisors. The first hypervisors, which IBM developed in the 1960s, were native hypervisors. These included the test software SIMMON and the CP/CMS operating system, the predecessor of IBM's VM family of virtual machine operating systems. Examples of Type-1 hypervisor include Hyper-V, Xen and VMware ESXi.
 ![image](https://upload.wikimedia.org/wikipedia/commons/9/9e/Hyperviseur.svg)
 
 ### Type-2 or hosted hypervisors
 These hypervisors run on a conventional operating system (OS) just as other computer programs do. A virtual machine monitor runs as a process on the host, such as VirtualBox. Type-2 hypervisors abstract guest operating systems from the host operating system, effectively creating an isolated system that can be interacted with by the host. Examples of Type-2 hypervisor include VirtualBox and VMware Workstation.
-The distinction between these two types is not always clear. For instance, KVM and bhyve are kernel modules[6] that effectively convert the host operating system to a type-1 hypervisor.[7]
+The distinction between these two types is not always clear. For instance, KVM and bhyve are kernel modules that effectively convert the host operating system to a type-1 hypervisor.
 ## Kernel Virtual Machine
 Kernel-based Virtual Machines (KVM) are an open-source virtualization technology built into Linux®. With them, you can transform Linux into a hypervisor that allows a host machine to run multiple isolated virtual environments called virtual machines (VMs) or guests.
 
