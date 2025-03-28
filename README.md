@@ -72,9 +72,9 @@ systemctl restart libvirtd
 ```
 
 
-### Installing  a virtual os
+## Installing  a virtual os
 
-## This config worked for me to then display system with ```virt-viewer VMname ``` command
+### This config worked for me to then display system with ```virt-viewer VMname ``` command
 ```
 # Replace al the <fields>, make sure you don't leave any arrow <>
 sudo virt-install \
