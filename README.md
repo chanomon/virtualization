@@ -246,3 +246,5 @@ This guide helps you enable file sharing in a VM running Ubuntu 14.04 using `9pf
 2 https://sheeeng.github.io/getting-started-with-kernel-based-virtual-machine-presentation
 3 Graziano, Charles (2011). A performance analysis of Xen and KVM hypervisors for hosting the Xen Worlds Project (MS thesis). Iowa State University. doi:10.31274/etd-180810-2322. hdl:20.500.12876/26405. Retrieved October 16, 2022.
 4 https://qemu.readthedocs.io/en/latest/system/devices/virtiofs.html
+5 Kivity, A. (2007). kvm : the Linux Virtual Machine Monitor. Retrieved from https://ci.nii.ac.jp/naid/10020503382
+
