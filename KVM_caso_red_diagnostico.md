@@ -2,7 +2,7 @@
 
 ## El problema
 
-Al crear una VM con `virt-install`, la VM quedó conectada a un **bridge físico** (`br0`) en lugar de la red NAT de libvirt (`default`). Esto causó que la interfaz de red del guest no obtuviera IP automáticamente.
+Al crear una VM con `virt-install`, la VM puede quedar conectada a un **bridge físico** (`br0`) en lugar de la red NAT de libvirt (`default`). Esto causa que la interfaz de red del guest no obtendrá IP automáticamente.
 
 ### Síntomas
 
