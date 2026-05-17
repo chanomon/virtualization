@@ -140,11 +140,13 @@ wget -P /var/lib/libvirt/images/ \
 cat > /tmp/user-data.yaml << 'EOF'
 #cloud-config
 users:
-  - name: ubuntu
+  - name: ehuipe
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
-password: ubuntu123
+    lock_passwd: false
 chpasswd:
+  list: |
+    ehuipe:ubuntu123       # ← aquí se define usuario:contraseña
   expire: false
 ssh_pwauth: true
 EOF
