@@ -140,15 +140,20 @@ wget -P /var/lib/libvirt/images/ \
 cat > /tmp/user-data.yaml << 'EOF'
 #cloud-config
 users:
-  - name: ehuipe
-    sudo: ALL=(ALL) NOPASSWD:ALL
-    shell: /bin/bash
-    lock_passwd: false
+  - default
+  - name: user2
+    gecos: User N. Ame
+    selinux-user: staff_u
+    groups: users,wheel
+    ssh_pwauth: True
+    ssh_authorized_keys:
+      - ssh-rsa AA..vz user@domain.com
 chpasswd:
   list: |
-    ehuipe:ubuntu123       # ← aquí se define usuario:contraseña
-  expire: false
-ssh_pwauth: true
+    root:password
+    cloud-user:mypassword
+    user2:mypassword2
+  expire: False
 EOF
 
 # Crear ISO de cloud-init
@@ -187,4 +192,16 @@ sudo virsh attach-interface <vm> network default --model virtio --live
 
 # Solicitar IP manualmente dentro del guest
 sudo dhclient <interfaz>
+# Para cambiar la contrasena de algun usuario ya existente y de root
+sudo virt-customize -a /var/lib/libvirt/images/bionic-cloud-nuevo.img \
+  --run-command 'rm -rf /var/lib/cloud/*' \
+  --root-password password:root123 \
+  --password existentuser:password:ubuntu123
+
+# Para crear nuevo usuario
+sudo virt-customize -a imagen.img \
+  --run-command 'useradd -m -s /bin/bash <nuevousuario>' \
+  --password ehuipe:password:mi_contraseña
+
+
 ```
